@@ -10,8 +10,6 @@ from ball import Ball
 
 from settings import NUMBER_PLAYERS, WHITE, FONT_SIZE, START_POINT_DESC, BLACK, screen, clock
 
-# INSPIRED BY https://github.com/sushantPatrikar/pingpongAI AND https://www.youtube.com/watch?v=V56-AyfVhIk
-
 GAME_AHEAD = False
 score = 0
 generation = 1
