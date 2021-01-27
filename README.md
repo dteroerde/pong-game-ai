@@ -10,7 +10,7 @@ Install all requirements
 pip install -r requirements.txt
 ```
 
-and have fun! :blush:
+and watch the AI plays Pong. :blush:
 
 ```bash
 python pongGameEvolutionAi.py
