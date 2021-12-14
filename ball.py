@@ -1,10 +1,13 @@
+from random import random
+
 import pygame
-from random import randrange
 from settings import size, BALL_SIZE, PLAYER_LENGTH, PLAYER_HEIGHT, screen, BLACK
+from random import randrange
+
 
 class Ball:
 
-    def __init__(self, currentXPos=randrange(size[0]), currentYPos=0, moveXPos=5, moveYPos=5):
+    def __init__(self, currentXPos=randrange(0, size[0]), currentYPos=0, moveXPos=5, moveYPos=5):
         self.currentXPos = currentXPos
         self.currentYPos = currentYPos
         self.xPos = currentXPos - moveXPos

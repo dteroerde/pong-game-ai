@@ -1,20 +1,19 @@
-import random
-
+from random import randrange
 import pygame
 import numpy as np
-from random import randrange
 
 from FeedForwardNetwork import feedForwardNetwork
 from player import Player
 from ball import Ball
 
-from settings import NUMBER_PLAYERS, WHITE, FONT_SIZE, START_POINT_DESC, BLACK, screen, clock
+from settings import NUMBER_PLAYERS, WHITE, FONT_SIZE, START_POINT_DESC, BLACK, screen, clock, size
 
 GAME_AHEAD = False
 score = 0
 generation = 1
 highestScoreAllTime = 0
 generationFromHighestScore = 1
+
 
 def howToMove(i):
     switcher = {
@@ -23,6 +22,7 @@ def howToMove(i):
         2: 0
     }
     return switcher.get(i)
+
 
 players = []
 balls = []
@@ -71,18 +71,22 @@ while not GAME_AHEAD:
         isWinner.start()
         players.clear()
         balls.clear()
+        random_start = currentXPos = randrange(0, size[0])
         for i in range(NUMBER_PLAYERS - 1):
             players.append(Player(weights=isWinner.weights, bias=isWinner.bias, start=False))
-            balls.append(Ball())
+            balls.append(Ball(currentXPos=random_start))
 
         players.append(isWinner)
-        balls.append(Ball())
+        balls.append(Ball(currentXPos=random_start))
 
     font = pygame.font.SysFont('ComicSans', FONT_SIZE, False, False)
     screen.blit(font.render("Score: " + str(bestScore), True, BLACK), START_POINT_DESC)
     screen.blit(font.render("Alive: " + str(isAlive), True, BLACK), [START_POINT_DESC[0], START_POINT_DESC[1] + 20])
-    screen.blit(font.render("Generation: " + str(generation), True, BLACK), [START_POINT_DESC[0], START_POINT_DESC[1] + 2 * 20])
-    screen.blit(font.render("Best score in game: " + str(highestScoreAllTime) + " in Generation: " + str(generationFromHighestScore), True, BLACK), [START_POINT_DESC[0], START_POINT_DESC[1] + 3 * 20])
+    screen.blit(font.render("Generation: " + str(generation), True, BLACK),
+                [START_POINT_DESC[0], START_POINT_DESC[1] + 2 * 20])
+    screen.blit(font.render(
+        "Best score in game: " + str(highestScoreAllTime) + " in Generation: " + str(generationFromHighestScore), True,
+        BLACK), [START_POINT_DESC[0], START_POINT_DESC[1] + 3 * 20])
     pygame.display.flip()
     clock.tick(200)
 
